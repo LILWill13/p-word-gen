@@ -135,3 +135,72 @@ button[disabled] {
     font-size: 0.8rem;
   }
 }
+
+#criteria {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 300ms ease-in-out;
+  border: 1px solid black;
+  border-radius: 5%;
+  z-index: 10;
+  background-color: white;
+  width: 500px;
+  max-width: 80%;
+}
+
+#criteria.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#pop-head {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+#pop-head h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+#cls-btn {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+#buttons {
+  padding: 10px;
+  line-height: 1.5;
+  font-size: 1.25rem;
+}
+
+#buttons button{
+  font-size: 1.2rem;
+  padding:5px ;
+  margin: 15px 42.5% 0px;
+}
+
+#overlay {
+  position: fixed;
+  opacity: 0;
+  transition: 300ms ease-in-out;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, .5);
+  pointer-events: none;
+}
+
+#overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}

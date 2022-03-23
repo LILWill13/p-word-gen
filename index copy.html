@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Password Generator</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./style copy.css" />
   </head>
   <body>
     <div class="wrapper">
@@ -25,10 +25,42 @@
           ></textarea>
         </div>
         <div class="card-footer">
-          <button id="generate" class="btn">Generate Password</button>
+          <button id="generate" data-pop-target="#criteria" class="btn">Generate Password</button>
         </div>
       </div>
+      <div id="criteria">
+          <div id="pop-head">
+            <h3>Select all that apply</h3>
+            <div>
+              <button data-cls-btn id="cls-btn">&times;</button>
+            </div>
+          </div>
+          <form action="" id="buttons">
+            <div id="length">
+              <span>Length</span><br>
+              <input type="radio" id="12-char" name="length" value="12-char">
+              <label for="12-char">12 characters</label><br>
+              <input type="radio" id="64-char" name="length" value="64-char">
+              <label for="64-char">64 characters</label><br>
+              <input type="radio" id="128-char" name="length" value="128-char">
+              <label for="128-char">128 characters</label><br>
+            </div>
+            <div id="char-type">
+              <span>Character Types</span><br>
+              <input type="checkbox" id="lowercase" name="lowercase" value="lowercase">
+              <label for="lowercase">Lowercase</label><br>
+              <input type="checkbox" id="uppercase" name="uppercase" value="uppercase">
+              <label for="uppercase">Uppercase</label><br>
+              <input type="checkbox" id="numericr" name="numeric" value="numeric">
+              <label for="numeric">Numeric</label><br>
+              <input type="checkbox" id="special-char" name="special-char" value="special char">
+              <label for="special-char">special characters</label><br>
+            </div>
+            <button type="submit">submit</button>
+        </form>
+      </div>
+      <div id="overlay"></div>
     </div>
-    <script src="script.js"></script>
+    <script src="./script copy.js"></script>
   </body>
 </html>
