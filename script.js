@@ -98,6 +98,7 @@ function generatePassword(alpha, alphaUp, number, ranChar, length) {
         generatedPassword += funcs[funcName];
     
       });
+
     }
 
   const final = generatedPassword.slice(0,length);
@@ -118,3 +119,7 @@ form.addEventListener("click", writePassword())
 form.addEventListener('submit',(e) =>{
   e.preventDefault();
 });
+
+
+
+
