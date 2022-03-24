@@ -176,6 +176,11 @@ button[disabled] {
   font-weight: bold;
 }
 
+#length {
+  height: 2rem;
+  margin: 0px 0px 15px 0px;
+}
+
 #buttons {
   padding: 10px;
   line-height: 1.5;
@@ -186,6 +191,7 @@ button[disabled] {
   font-size: 1.2rem;
   padding:5px ;
   margin: 15px 42.5% 0px;
+  cursor: pointer;
 }
 
 #overlay {

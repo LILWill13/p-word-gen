@@ -36,27 +36,27 @@
             </div>
           </div>
           <form action="" id="buttons">
-            <div id="length">
-              <span>Length</span><br>
-              <input type="radio" id="12-char" name="length" value="12-char">
-              <label for="12-char">12 characters</label><br>
-              <input type="radio" id="64-char" name="length" value="64-char">
-              <label for="64-char">64 characters</label><br>
-              <input type="radio" id="128-char" name="length" value="128-char">
-              <label for="128-char">128 characters</label><br>
+            <div>
+              <input type="text" id="length" name="length" placeholder="Length of Password">
             </div>
+
             <div id="char-type">
               <span>Character Types</span><br>
-              <input type="checkbox" id="lowercase" name="lowercase" value="lowercase">
+
+              <input class="checkbox" type="checkbox" id="lowercase"  name="lowercase" >
               <label for="lowercase">Lowercase</label><br>
-              <input type="checkbox" id="uppercase" name="uppercase" value="uppercase">
+
+              <input class="checkbox"  type="checkbox" id="uppercase" name="uppercase">
               <label for="uppercase">Uppercase</label><br>
-              <input type="checkbox" id="numericr" name="numeric" value="numeric">
+
+              <input class="checkbox"  type="checkbox" id="numeric" name="numeric">
               <label for="numeric">Numeric</label><br>
-              <input type="checkbox" id="special-char" name="special-char" value="special char">
-              <label for="special-char">special characters</label><br>
+
+              <input class="checkbox"  type="checkbox" id="special-char" name="special-char">
+              <label for="special-char">Special characters</label><br>
+              
             </div>
-            <button type="submit">submit</button>
+            <button id="submit" type="submit">submit</button>
         </form>
       </div>
       <div id="overlay"></div>
