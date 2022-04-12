@@ -1,125 +1,94 @@
 // Assignment Code
-const openPopButtons = document.querySelectorAll('[data-pop-target]')
-const clsPopButtons = document.querySelectorAll('[data-cls-btn]')
-const overlay = document.getElementById('overlay')
 
-const randomCharacter = "abcdefghijklmnopqrstuvwxyz"
-const randomSpecial = "!#$%&*-_+()^~@"
+const randomLower = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
-const alpha = randomCharacter[Math.floor(Math.random() * randomCharacter.length)];
-const alphaUp = randomCharacter[Math.floor(Math.random() * randomCharacter.length)].toUpperCase();
-const ranChar = randomSpecial[Math.floor(Math.random() * randomSpecial.length)];
-const number = Math.floor(Math.random() * 10);
+const randomSpecial = ['!','#','$','%','&','*','-','+','(',')','^','~','@']
 
+const randomUpper = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','v','W','X','Y','Z']
 
-const funcs = {
-  alpha: alpha,
-  alphaUp: alphaUp,
-  ranChar: ranChar,
-  number: number,
-}
+const nums = ['1','2','3','4','5','6','7','8','9']
+ 
+// const alpha = randomCharacter[Math.floor(Math.random() * randomCharacter.length)];
+// const alphaUp = randomCharacter[Math.floor(Math.random() * randomCharacter.length)].toUpperCase();
+// const ranChar = randomSpecial[Math.floor(Math.random() * randomSpecial.length)];
+// const number = Math.floor(Math.random() * 10);
 
-openPopButtons.forEach(button => {
-  button.addEventListener('click',() => {
-    const criteria = document.querySelector(button.dataset.popTarget)
-    openPop(criteria)
-  })
-})
-
-overlay.addEventListener('click', () => {
-  const pop = document.querySelectorAll('#criteria.active')
-  pop.forEach(criteria => {
-    clsPop(criteria)
-  })
-})
-
-clsPopButtons.forEach(button => {
-  button.addEventListener('click',() => {
-    const criteria = button.closest('#criteria')
-    clsPop(criteria)
-  })
-})
-
-function openPop(criteria) {
-  if(criteria === null) return
-  criteria.classList.add('active')
-  overlay.classList.add('active')
-}
-
-function clsPop(criteria) {
-  if(criteria === null) return
-  criteria.classList.remove('active')
-  overlay.classList.remove('active')
-}
 
 
 // generateBtn is linked to the submit button
-var generateBtn = document.querySelector("#submit");
+var generateBtn = document.querySelector("#generate");
 
-const form = document.getElementById('buttons');
-const length = document.getElementById('length'); 
-const lowercase = document.getElementById("lowercase"); 
-const uppercase = document.getElementById('uppercase'); 
-const numeric = document.getElementById('numeric'); 
-const special = document.getElementById('special-char');  
+function getPasswordOptions() {
+  var length = parseInt(
+    prompt('How many characters do you want your password?')
+  );
+  if(Number.isNaN(length)){
+    alert('Password Length must be a number!')
+    return null;
+  } 
 
+  if(length < 8){
+    alert('Password length must atleast 8 characters')
+    getPasswordOptions()
+  }
 
+  if(length > 128){
+    alert('Password length must atmost 128 characters')
+    getPasswordOptions()
+  }
 
-form.addEventListener('submit', () => {
-    const lengthValue = +length.value
-    const lowerCheck = lowercase.checked
-    const upperCheck = uppercase.checked
-    const numericCheck = numeric.checked
-    const speicalChecked = special.checked
+  var hasNums = confirm('Click ok to include nubers')
+  var hasRandomLower = confirm('Click ok to include lowercase letters')
+  var hasRandomUpper = confirm('Click ok to include uppercase letters')
+  var hasRandomSpecial = confirm('Click ok to include special characters')
+  
+  if(!hasNums && !hasRandomLower && !hasRandomUpper && !hasRandomSpecial){
+    alert('Must chose atleast one option')
+    return null
+  }
 
-   generatePassword(lowerCheck, upperCheck, numericCheck, speicalChecked, lengthValue);
-});
-
-function generatePassword(alpha, alphaUp, number, ranChar, length) {
-
-    let generatedPassword ="";
-
-    const allCriteria = alpha + alphaUp + number + ranChar;
-
-    const  criteriaArr = [{alpha}, {alphaUp}, {number}, {ranChar}].filter(item =>  Object.values(item)[0]);
-
-    if (allCriteria === 0) {
-       alert('Set requirements');
-    } else if (length < 8 || length > 128) {
-      alert('Length must be between 8 & 128 characters');
-    };
-
-
-
-    for(i = 0; i < length; i += allCriteria){
-      criteriaArr.forEach(type => {
-        const funcName = Object.keys(type)[0];
-          
-        generatedPassword += funcs[funcName];
-    
-      });
-
-    }
-
-  const final = generatedPassword.slice(0,length);
-  alert(final)
-  return final;
+  const passwordOptions = {
+    length: length,
+    hasRandomSpecial: hasRandomSpecial,
+    hasRandomLower: hasRandomLower,
+    hasRandomUpper: hasRandomUpper,
+    hasNums: hasNums,
+  };
+ 
+  return passwordOptions
 }
 
- 
-function writePassword() {
+// function getRandom(arr){
+//   var randomIndex = math.floor(math.random() * arr.length);
+//   var randomEl = arr[randomIndex];
+//   return randomEl
+// }
 
+
+
+
+function generatePassword() {
+  var options = getPasswordOptions()
+  const avaiableChars = [
+    ...(options.hasRandomLower ? randomLower : []),
+    ...(options.hasRandomUpper ? randomUpper : []),
+    ...(options.hasRandomSpecial? randomSpecial : []),
+    ...(options.hasNums ? nums : []),
+  ]
+
+  let pass = '';
+
+  for(let i = 0; i < options.length; i++){
+   const randomIndex = Math.floor(Math.random() * avaiableChars.length)
+   pass += avaiableChars[randomIndex];
+  }
+  return pass
+}
+
+function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
 // Add event listener to generate button
-form.addEventListener("click", writePassword())
-
-form.addEventListener('submit',(e) =>{
-  e.preventDefault();
-});
-
-
-
-
+generateBtn.addEventListener("click", writePassword());
